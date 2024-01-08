@@ -3,16 +3,18 @@ import { StyleSheet, View, Text } from "react-native";
 import Checkbox from "./Checkbox";
 import moment from "moment";
 
-export default function Todo({
+export default function Todo({ //se define un componente funcional y acepta las siguientes 
+    //propiedades 
     id,
     text,
     isCompleted,
     hour
 }){
 
-    const [localHour, setLocalHour] = useState(new Date(hour));
+    const [localHour, setLocalHour] = useState(new Date(hour)); //utilizamos un hook para crear un estado local,
+    //se usa para manejar la hora 
     return(
-        
+        //renderizamos
         <View style={styles.container}> 
         <Checkbox 
             id={id}

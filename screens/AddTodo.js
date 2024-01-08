@@ -7,9 +7,13 @@ import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function AddTodo(){
+    //hooks de estado useState para poder gestionar el nombre de la nva tarea
     const [name, setName] = useState('');
     const [date, setDate] = useState(new Date());
+    
+    //usamos useSelector para acceder al estado y traer la lista de las tareas desde nuestro slice todos
     const listTodos = useSelector(state => state.todos.todos);
+    //para hacer la accion
     const dispatch= useDispatch();
     const navigation = useNavigation();
 

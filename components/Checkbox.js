@@ -4,23 +4,25 @@ import {Entypo} from '@expo/vector-icons';
 import { updateTodoReducer } from '../redux/todosSlice';
 import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-export default function Checkbox({
+//AsyncStorage es para guardar datos de formar local
+
+export default function Checkbox({ //componente funcional
     id,
     text,
     isCompleted,
     hour
 }){
-    const dispatch= useDispatch();
-    const listTodos = useSelector(state => state.todos.todos);
+    const dispatch= useDispatch(); //para despechar las acciones
+    const listTodos = useSelector(state => state.todos.todos); //para acceder al estado de redux  y traer la lista de tareas
 
     const handleCheckbox =() =>{
         try{
             dispatch(updateTodoReducer({id, isCompleted}));
             AsyncStorage.setItem("@Todos", JSON.stringify(
-                listTodos.map(todo =>{
+                listTodos.map(todo =>{ //utilizamos map para crear el array que esta en la lista de tareas
                     if (todo.id === id){
                         return {...todo, isCompleted: !todo.isCompleted }
-                    }
+                    } //este fragmento hace que cambien las propiedades de la tarea, a completada o no completada
                     return todo;
                 })
             )) //guardar nuestros todos de forma local
